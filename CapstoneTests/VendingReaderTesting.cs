@@ -15,7 +15,7 @@ namespace CapstoneTests
         {
             VendingReader chipA = new VendingReader();
             string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
-            Dictionary<string, List<VendingItem>> results = chipA.ReadInputFile(filePath);
+            Dictionary<string, List<VendingItem>> results = chipA.StockNewVendingMachine(filePath);
 
             string a1 = "A1";
             List<VendingItem> potatoCrispsRow = results[a1];
@@ -34,7 +34,7 @@ namespace CapstoneTests
         {
             VendingReader candyB = new VendingReader();
             string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
-            Dictionary<string, List<VendingItem>> results = candyB.ReadInputFile(filePath);
+            Dictionary<string, List<VendingItem>> results = candyB.StockNewVendingMachine(filePath);
 
 
             string b1 = "B1";    
@@ -54,7 +54,7 @@ namespace CapstoneTests
         {
             VendingReader drinkC = new VendingReader();
             string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
-            Dictionary<string, List<VendingItem>> results = drinkC.ReadInputFile(filePath);
+            Dictionary<string, List<VendingItem>> results = drinkC.StockNewVendingMachine(filePath);
 
 
             string c3 = "C3";
@@ -70,7 +70,7 @@ namespace CapstoneTests
         {
             VendingReader gumD = new VendingReader();
             string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
-            Dictionary<string, List<VendingItem>> results = gumD.ReadInputFile(filePath);
+            Dictionary<string, List<VendingItem>> results = gumD.StockNewVendingMachine(filePath);
 
             string d1 = "D1";
             List<VendingItem> uChews = results[d1];
@@ -86,7 +86,7 @@ namespace CapstoneTests
         {
             VendingReader vr = new VendingReader();
             string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
-            Dictionary<string, List<VendingItem>> results = vr.ReadInputFile(filePath);
+            Dictionary<string, List<VendingItem>> results = vr.StockNewVendingMachine(filePath);
 
             Assert.AreEqual(true, results.ContainsKey("A1"));
             Assert.AreEqual(true, results.ContainsKey("A2"));

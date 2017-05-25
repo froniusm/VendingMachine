@@ -11,7 +11,7 @@ namespace Capstone.Classes
     {
         static char[] delimiters = new char[] { '|' }; // list of delimiters
 
-        public Dictionary<string, List<VendingItem>> ReadInputFile(string filePath)
+        public Dictionary<string, List<VendingItem>> StockNewVendingMachine(string filePath)
         {
             Dictionary<string, List<VendingItem>> initialStock = new Dictionary<string, List<VendingItem>>();
 
