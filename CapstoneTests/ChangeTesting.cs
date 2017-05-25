@@ -30,11 +30,13 @@ namespace CapstoneTests
             Change twentyCents = new Change(0.20m);
             Change oneDollar = new Change(1.00m);
             Change twoDollarsfiveCents = new Change(2.05M);
+            Change fiveDollars = new Change(5.00m);
 
             Assert.AreEqual("0 Quarters, 0 Dimes, 1 Nickels.", fiveCents.ToString());
             Assert.AreEqual("0 Quarters, 2 Dimes, 0 Nickels.", twentyCents.ToString());
             Assert.AreEqual("4 Quarters, 0 Dimes, 0 Nickels.", oneDollar.ToString());
             Assert.AreEqual("8 Quarters, 0 Dimes, 1 Nickels.", twoDollarsfiveCents.ToString());
+            Assert.AreEqual("20 Quarters, 0 Dimes, 0 Nickels.", fiveDollars.ToString());
         }
     }
 }

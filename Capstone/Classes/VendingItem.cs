@@ -9,8 +9,7 @@ namespace Capstone.Classes
     public abstract class VendingItem
     {
         public string Name { get; }
-        public decimal Cost { get; }
-        public string EatNoise { get; }
+        public decimal Cost { get; } 
 
         public virtual string MakeEatNoise()
         {
