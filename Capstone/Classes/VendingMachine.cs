@@ -40,7 +40,7 @@ namespace Capstone.Classes
             balance = balance + cash;
         }
         public string ReturnChange() // Return change sets the vending machine's balance field to 0, and returns a string
-            // containing the coins they should receive back
+                                     // containing the coins they should receive back
         {
             Change c = new Change(balance);
             string coins = c.ToString();
@@ -49,74 +49,29 @@ namespace Capstone.Classes
             balance = 0.00M;
             return coins;
         }
-        public bool CanBuyItem(string userSelection) // returns true if the user can buy the item, false otherwise.
-            // checks the inventory to see if the item with the key userselection is in stock, and if they have enough balance
+        public bool isInStock(string userSelection) // returns true if the user can buy the item, false otherwise.
+                                                     // checks the inventory to see if the item with the key userselection is in stock, and if they have enough balance
         {
-            if (!inventory.ContainsKey(userSelection))
-                throw new Exception("That is not a valid product selection.  Please make sure the user can't enter invalid products.");
+
             if (inventory[userSelection].Count == 0) // If the item is out of stock, they can't buy it
                 return false;
-
-            List<VendingItem> productList = inventory[userSelection];
-            VendingItem product = productList[0];
-            decimal cost = 100000;
-            if (product is Chip)
-            {
-                Chip temp = (Chip)product;
-                cost = temp.Cost;
-            }
-            else if (product is Candy)
-            {
-                Candy temp = (Candy)product;
-                cost = temp.Cost;
-            }
-            else if (product is Drink)
-            {
-                Drink temp = (Drink)product;
-                cost = temp.Cost;
-            }
-            else // (Product is Gum)
-            {
-                Gum temp = (Gum)product;
-                cost = temp.Cost;
-            }
-
-            if (balance < cost) // If they can't afford the item in question, they can't buy it
-                return false;
-
             return true;
+
         }
         public void BuyItem(string userSelection)  // buys the item, reducing balance by the item's cost and 
-            // reducing the relevant inventory item by one.
-        {
+        {                                      // reducing the relevant inventory item by one.  
             VendingItem product = inventory[userSelection][0];
-            decimal productCost = 100000;
+            decimal productCost = product.Cost;
 
-            if (product is Chip)
+            if (balance >= productCost)
             {
-                Chip temp = (Chip)product;
-                productCost = temp.Cost;
-            }
-            else if (product is Candy)
-            {
-                Candy temp = (Candy)product;
-                productCost = temp.Cost;
-            }
-            else if (product is Drink)
-            {
-                Drink temp = (Drink)product;
-                productCost = temp.Cost;
-            }
-            else // (Product is Gum)
-            {
-                Gum temp = (Gum)product;
-                productCost = temp.Cost;
+                balance -= productCost;
+                // Writer Code Goes Here
+                inventory[userSelection].RemoveAt(0);
             }
 
-            balance -= productCost;
-            // Writer Code Goes Here
-            inventory[userSelection].RemoveAt(0);
-        } 
+
+        }
 
 
 

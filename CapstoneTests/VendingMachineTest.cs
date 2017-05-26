@@ -56,38 +56,37 @@ namespace CapstoneTests
                 buyAllTheCrisps.BuyItem(a1);
             }
 
-            Assert.AreEqual(true, wantsToBuyOneCrisp.CanBuyItem(a1));
-            Assert.AreEqual(false, buyAllTheCrisps.CanBuyItem(a1));
+            Assert.AreEqual(true, wantsToBuyOneCrisp.isInStock(a1));
+            Assert.AreEqual(false, buyAllTheCrisps.isInStock(a1));
         }
 
         [TestMethod]
         public void VendingMachine_CantBuyItemsWithoutEnoughCash()
         {
+            string a1 = "A1";
+
             VendingMachine giveFreeStuffPls = new VendingMachine();
+            giveFreeStuffPls.BuyItem(a1);
 
             VendingMachine notQuiteEnoughCash = new VendingMachine();
             notQuiteEnoughCash.AddMoney(0.7M);
+            notQuiteEnoughCash.BuyItem(a1);
 
             VendingMachine onlyEnoughForGum = new VendingMachine();
             onlyEnoughForGum.AddMoney(1.00m);
+            onlyEnoughForGum.BuyItem(a1);
+            onlyEnoughForGum.BuyItem("D1");
 
             VendingMachine canBuyOneButNotTwo = new VendingMachine();
             canBuyOneButNotTwo.AddMoney(1.00m);
-
-            Assert.AreEqual(false, giveFreeStuffPls.CanBuyItem("A1"));
-            Assert.AreEqual(false, giveFreeStuffPls.CanBuyItem("C2"));
-            Assert.AreEqual(false, giveFreeStuffPls.CanBuyItem("D1"));
-
-            Assert.AreEqual(false, notQuiteEnoughCash.CanBuyItem("C1"));
-            Assert.AreEqual(false, notQuiteEnoughCash.CanBuyItem("D2"));
-
-            Assert.AreEqual(true, onlyEnoughForGum.CanBuyItem("D2"));
-            Assert.AreEqual(true, onlyEnoughForGum.CanBuyItem("D4"));
-            Assert.AreEqual(false, onlyEnoughForGum.CanBuyItem("B3"));
-
-            Assert.AreEqual(true, canBuyOneButNotTwo.CanBuyItem("D1"));
             canBuyOneButNotTwo.BuyItem("D1");
-            Assert.AreEqual(false, canBuyOneButNotTwo.CanBuyItem("D1"));
+            canBuyOneButNotTwo.BuyItem("D1");
+
+            Assert.AreEqual(5, (giveFreeStuffPls.Inventory)[a1].Count);
+            Assert.AreEqual(5, (notQuiteEnoughCash.Inventory)[a1].Count);
+            Assert.AreEqual(5, (onlyEnoughForGum.Inventory)[a1].Count);
+            Assert.AreEqual(4, (onlyEnoughForGum.Inventory)["D1"].Count);
+            Assert.AreEqual(4, (canBuyOneButNotTwo.Inventory)["D1"].Count);
         }
     }
 }

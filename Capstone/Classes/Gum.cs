@@ -8,27 +8,15 @@ namespace Capstone.Classes
 {
     public class Gum: VendingItem
     {
-        private string name;
-        public new string Name
-        {
-            get { return name; }
-        }
-
-        private decimal cost;
-        public new decimal Cost
-        {
-            get { return cost; }
-        }
 
         public override string MakeEatNoise()
         {
             return "Chew Chew, Yum!";
         }
 
-        public Gum(decimal cost, string productName)
+        public Gum(decimal cost, string productName): base(cost, productName)
         {
-            name = productName;
-            this.cost = cost;
+
         }
     }
 }
