@@ -53,7 +53,7 @@ namespace Capstone.Classes
                                                      // checks the inventory to see if the item with the key userselection is in stock, and if they have enough balance
         {
 
-            if (inventory[userSelection].Count == 0) // If the item is out of stock, they can't buy it
+            if (inventory[userSelection].Count <= 0) // If the item is out of stock, they can't buy it
                 return false;
             return true;
 

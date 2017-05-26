@@ -9,7 +9,7 @@ using System.IO;
 namespace Capstone.Classes
 {
     public class MainMenu
-    {/*
+    {
         public void Display()
         {
             PrintHeader();
@@ -23,6 +23,7 @@ namespace Capstone.Classes
                 Console.WriteLine();
                 Console.WriteLine("(1) Display Vending Machine Items");
                 Console.WriteLine("(2) Purchase");
+                Console.WriteLine("(Q) Quit");
                 Console.WriteLine("What option do you want to select?");
 
                 string input = Console.ReadLine();
@@ -67,11 +68,14 @@ namespace Capstone.Classes
                         }
                     }
                 }
-                else if(input == "2")
+                else if (input == "2")
                 {
                     SubMenu submenu = new SubMenu(vm);
                     submenu.Display();
                 }
+
+                else if (input == "Q" || input == "q")
+                    return;
                 else
                 {
                     Console.WriteLine("Please try again.");
@@ -83,6 +87,6 @@ namespace Capstone.Classes
         private void PrintHeader()
         {
             Console.WriteLine("WELCOME TO THE VENDO-MATIC 500!!!");
-        }*/
+        }
     }
 }

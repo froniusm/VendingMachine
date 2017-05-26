@@ -8,7 +8,7 @@ using Capstone.Classes;
 namespace Capstone.Classes
 {
     public class SubMenu
-    {/*
+    {
 
         private VendingMachine vm2;
         public VendingMachine Vm2
@@ -30,6 +30,7 @@ namespace Capstone.Classes
                 Console.WriteLine("(1) Feed Money");
                 Console.WriteLine("(2) Select Product");
                 Console.WriteLine("(3) Finish Transaction");
+                Console.WriteLine("(Q) Back To Main Menu");
                 Console.WriteLine("Current Money Provided: " + vm2.Balance);
 
                 string userInput = Console.ReadLine();
@@ -52,24 +53,34 @@ namespace Capstone.Classes
                 else if (userInput == "2")
                 {
                     Console.WriteLine("Please enter your selection: ");
-                    string input = Console.ReadLine();
-                    if (vm2.Balance < vm2.Inventory.) // Need to fix
-                    {
-                        Console.WriteLine("Please provide more cash");
-                    }
-                    else if ()  // Need to fix
-                    {
-                        Console.WriteLine("Sorry, item is sold out");
-                    }
-                    else if (!vm2.Inventory.ContainsKey(userInput))
+                    string input = (Console.ReadLine()).ToUpper();
+
+                    if (!vm2.Inventory.ContainsKey(input))
                     {
                         Console.WriteLine("Invalid product code. Please try again.");
                     }
-                    else if (vm2.Inventory.ContainsKey(userInput))
+                    else if (!vm2.isInStock(input))
                     {
-                        Console.WriteLine("Dispensing...");
-                        Console.WriteLine("Current Balance: " + vm2.Balance);
+                        Console.WriteLine("Sorry, item is sold out");
                     }
+
+                    else
+                    {
+                        List<VendingItem> userDesiredProduct = (vm2.Inventory)[input];
+                        decimal cost = userDesiredProduct[0].Cost;
+
+                        if (vm2.Balance < cost)
+                        {
+                            Console.WriteLine("Please provide more cash");
+                        }
+                        else if (vm2.Inventory.ContainsKey(input))
+                        {
+                            vm2.BuyItem(input);
+                            Console.WriteLine("Dispensing...");
+                            Console.WriteLine("Current Balance: " + vm2.Balance);
+                        }
+                    }
+
                 }
                 else if (userInput == "3")
                 {
@@ -78,8 +89,12 @@ namespace Capstone.Classes
                     // Console.WriteLine("Item is being consumed: " + vm2.MakeEatNoises); // Need to add more code to VendingMachine first
                     // before writing the items consumed
                 }
+                else if (userInput == "Q" || userInput == "q")
+                {
+                    break;
+                }
             }
-        }*/
+        }
     }
 }
 
