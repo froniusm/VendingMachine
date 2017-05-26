@@ -9,13 +9,13 @@ namespace Capstone.Classes
     public class Gum: VendingItem
     {
         private string name;
-        public string Name
+        public new string Name
         {
             get { return name; }
         }
 
         private decimal cost;
-        public decimal Cost
+        public new decimal Cost
         {
             get { return cost; }
         }

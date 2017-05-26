@@ -14,7 +14,9 @@ namespace CapstoneTests
         public void VendingReadering_ChipTesting()
         {
             VendingReader chipA = new VendingReader();
-            string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
+            string directory = Directory.GetCurrentDirectory();
+            string filename = "vendingmachine.csv";
+            string filePath = Path.Combine(directory, filename);
             Dictionary<string, List<VendingItem>> results = chipA.StockNewVendingMachine(filePath);
 
             string a1 = "A1";
@@ -33,7 +35,9 @@ namespace CapstoneTests
         public void VendingReader_CandyTesting()
         {
             VendingReader candyB = new VendingReader();
-            string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
+            string directory = Environment.CurrentDirectory;
+            string filename = "vendingmachine.csv";
+            string filePath = Path.Combine(directory, filename);
             Dictionary<string, List<VendingItem>> results = candyB.StockNewVendingMachine(filePath);
 
 
@@ -53,7 +57,9 @@ namespace CapstoneTests
         public void VendingReader_DrinkTesting()
         {
             VendingReader drinkC = new VendingReader();
-            string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
+            string directory = Directory.GetCurrentDirectory();
+            string filename = "vendingmachine.csv";
+            string filePath = Path.Combine(directory, filename);
             Dictionary<string, List<VendingItem>> results = drinkC.StockNewVendingMachine(filePath);
 
 
@@ -69,7 +75,9 @@ namespace CapstoneTests
         public void VendingReader_GumTesting()
         {
             VendingReader gumD = new VendingReader();
-            string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
+            string directory = Directory.GetCurrentDirectory();
+            string filename = "vendingmachine.csv";
+            string filePath = Path.Combine(directory, filename);
             Dictionary<string, List<VendingItem>> results = gumD.StockNewVendingMachine(filePath);
 
             string d1 = "D1";
@@ -85,7 +93,9 @@ namespace CapstoneTests
         public void VendingReader_CreatedAll16Items()
         {
             VendingReader vr = new VendingReader();
-            string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
+            string directory = Directory.GetCurrentDirectory();
+            string filename = "vendingmachine.csv";
+            string filePath = Path.Combine(directory, filename);
             Dictionary<string, List<VendingItem>> results = vr.StockNewVendingMachine(filePath);
 
             Assert.AreEqual(true, results.ContainsKey("A1"));

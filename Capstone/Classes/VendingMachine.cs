@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Capstone.Classes;
+using System.IO;
 
 namespace Capstone.Classes
 {
@@ -21,29 +22,35 @@ namespace Capstone.Classes
             get { return this.balance; }
         }
 
-        public VendingMachine()
+        public VendingMachine() // construct a vending machine with a full stock of inventory
         {
             balance = 0.00M;
             VendingReader fullInventory = new VendingReader();
-            string filePath = @"C:\Users\Kevin Ye\Documents\team3-c-module1-capstone\etc\vendingmachine.csv";
+            string directory = Directory.GetCurrentDirectory();
+            string filename = "vendingmachine.csv";
+            string filePath = Path.Combine(directory, filename);
 
             Dictionary<string, List<VendingItem>> newStock = fullInventory.StockNewVendingMachine(filePath);
             inventory = newStock;
         }
-        public void AddMoney(decimal cash)
+
+        public void AddMoney(decimal cash) // adds cash to the balance
         {
             // Writer code goes here
             balance = balance + cash;
         }
-        public string ReturnChange()
+        public string ReturnChange() // Return change sets the vending machine's balance field to 0, and returns a string
+            // containing the coins they should receive back
         {
             Change c = new Change(balance);
             string coins = c.ToString();
-            //Writer Code goes here
+            VendingWriter vr = new VendingWriter();
+            // Writer code goes here
             balance = 0.00M;
             return coins;
         }
-        public bool canBuyItem(string userSelection)
+        public bool CanBuyItem(string userSelection) // returns true if the user can buy the item, false otherwise.
+            // checks the inventory to see if the item with the key userselection is in stock, and if they have enough balance
         {
             if (!inventory.ContainsKey(userSelection))
                 throw new Exception("That is not a valid product selection.  Please make sure the user can't enter invalid products.");
@@ -79,7 +86,8 @@ namespace Capstone.Classes
 
             return true;
         }
-        public void buyItem(string userSelection)
+        public void BuyItem(string userSelection)  // buys the item, reducing balance by the item's cost and 
+            // reducing the relevant inventory item by one.
         {
             VendingItem product = inventory[userSelection][0];
             decimal productCost = 100000;
@@ -108,7 +116,7 @@ namespace Capstone.Classes
             balance -= productCost;
             // Writer Code Goes Here
             inventory[userSelection].RemoveAt(0);
-        }
+        } 
 
 
 

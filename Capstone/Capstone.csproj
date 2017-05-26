@@ -48,9 +48,12 @@
     <Compile Include="Classes\Chip.cs" />
     <Compile Include="Classes\Drink.cs" />
     <Compile Include="Classes\Gum.cs" />
+    <Compile Include="Classes\MainMenu.cs" />
+    <Compile Include="Classes\SubMenu.cs" />
     <Compile Include="Classes\VendingItem.cs" />
     <Compile Include="Classes\VendingMachine.cs" />
     <Compile Include="Classes\VendingReader.cs" />
+    <Compile Include="Classes\VendingWriter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

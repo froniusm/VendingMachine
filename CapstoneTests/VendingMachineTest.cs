@@ -53,11 +53,11 @@ namespace CapstoneTests
             buyAllTheCrisps.AddMoney(10000m);
             for (int i = 0; i < 5; i++)
             {
-                buyAllTheCrisps.buyItem(a1);
+                buyAllTheCrisps.BuyItem(a1);
             }
 
-            Assert.AreEqual(true, wantsToBuyOneCrisp.canBuyItem(a1));
-            Assert.AreEqual(false, buyAllTheCrisps.canBuyItem(a1));
+            Assert.AreEqual(true, wantsToBuyOneCrisp.CanBuyItem(a1));
+            Assert.AreEqual(false, buyAllTheCrisps.CanBuyItem(a1));
         }
 
         [TestMethod]
@@ -74,20 +74,20 @@ namespace CapstoneTests
             VendingMachine canBuyOneButNotTwo = new VendingMachine();
             canBuyOneButNotTwo.AddMoney(1.00m);
 
-            Assert.AreEqual(false, giveFreeStuffPls.canBuyItem("A1"));
-            Assert.AreEqual(false, giveFreeStuffPls.canBuyItem("C2"));
-            Assert.AreEqual(false, giveFreeStuffPls.canBuyItem("D1"));
+            Assert.AreEqual(false, giveFreeStuffPls.CanBuyItem("A1"));
+            Assert.AreEqual(false, giveFreeStuffPls.CanBuyItem("C2"));
+            Assert.AreEqual(false, giveFreeStuffPls.CanBuyItem("D1"));
 
-            Assert.AreEqual(false, notQuiteEnoughCash.canBuyItem("C1"));
-            Assert.AreEqual(false, notQuiteEnoughCash.canBuyItem("D2"));
+            Assert.AreEqual(false, notQuiteEnoughCash.CanBuyItem("C1"));
+            Assert.AreEqual(false, notQuiteEnoughCash.CanBuyItem("D2"));
 
-            Assert.AreEqual(true, onlyEnoughForGum.canBuyItem("D2"));
-            Assert.AreEqual(true, onlyEnoughForGum.canBuyItem("D4"));
-            Assert.AreEqual(false, onlyEnoughForGum.canBuyItem("B3"));
+            Assert.AreEqual(true, onlyEnoughForGum.CanBuyItem("D2"));
+            Assert.AreEqual(true, onlyEnoughForGum.CanBuyItem("D4"));
+            Assert.AreEqual(false, onlyEnoughForGum.CanBuyItem("B3"));
 
-            Assert.AreEqual(true, canBuyOneButNotTwo.canBuyItem("D1"));
-            canBuyOneButNotTwo.buyItem("D1");
-            Assert.AreEqual(false, canBuyOneButNotTwo.canBuyItem("D1"));
+            Assert.AreEqual(true, canBuyOneButNotTwo.CanBuyItem("D1"));
+            canBuyOneButNotTwo.BuyItem("D1");
+            Assert.AreEqual(false, canBuyOneButNotTwo.CanBuyItem("D1"));
         }
     }
 }
