@@ -1,5 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Capstone.Classes;
+using System.IO;
 
 namespace CapstoneTests
 {
@@ -7,8 +9,14 @@ namespace CapstoneTests
     public class VendingWriterTest
     {
         [TestMethod]
-        public void VendingWriterTest_Returns()
+        public void VendingWriter_RecordsChange()
         {
+            string directory = Directory.GetCurrentDirectory();
+            string writeToHere = "vendingmachine.csv";
+            string correctStrings = "";
+
+            VendingReader vr = new VendingReader();
+            VendingWriter vw = new VendingWriter();
         }
     }
 }

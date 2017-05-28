@@ -38,5 +38,12 @@ namespace CapstoneTests
             Assert.AreEqual("8 Quarters, 0 Dimes, 1 Nickels.", twoDollarsfiveCents.ToString());
             Assert.AreEqual("20 Quarters, 0 Dimes, 0 Nickels.", fiveDollars.ToString());
         }
+
+        [TestMethod]
+        public void WriterTesting_RecordsAddingCash()
+        {
+            VendingReader vr = new VendingReader();
+            
+        }
     }
 }

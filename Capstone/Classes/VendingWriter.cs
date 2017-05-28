@@ -8,9 +8,9 @@ using System.IO;
 
 namespace Capstone.Classes
 {
-    class VendingWriter
+    public class VendingWriter
     {
-        public static void WritingAFile(string thisIsWhatTheVendingMachineDid)
+        public void WritingAFile(string thisIsWhatTheVendingMachineDid)
         {
             string directory = Environment.CurrentDirectory;
             string filename = "log.txt";
@@ -18,7 +18,7 @@ namespace Capstone.Classes
 
             try
             {
-                using (StreamWriter sw = new StreamWriter(filename))
+                using (StreamWriter sw = new StreamWriter(filename, true))
                 {
                     sw.WriteLine(DateTime.UtcNow + thisIsWhatTheVendingMachineDid);
                 }

@@ -36,17 +36,28 @@ namespace Capstone.Classes
 
         public void AddMoney(decimal cash) // adds cash to the balance
         {
-            // Writer code goes here
+            VendingWriter logWriter = new VendingWriter();
+            string transactionString = " FEED MONEY:  $";
+            transactionString += cash;
+
             balance = balance + cash;
+
+            transactionString = transactionString + " $" + balance;
+            logWriter.WritingAFile(transactionString);
         }
         public string ReturnChange() // Return change sets the vending machine's balance field to 0, and returns a string
                                      // containing the coins they should receive back
         {
+            VendingWriter vr = new VendingWriter();
+            string recordTransaction = ("GIVE CHANGE: $" +balance.ToString());
+
             Change c = new Change(balance);
             string coins = c.ToString();
-            VendingWriter vr = new VendingWriter();
-            // Writer code goes here
             balance = 0.00M;
+
+            recordTransaction += " $0.00";
+            vr.WritingAFile(recordTransaction);
+
             return coins;
         }
         public bool isInStock(string userSelection) // returns true if the user can buy the item, false otherwise.
@@ -65,9 +76,15 @@ namespace Capstone.Classes
 
             if (balance >= productCost)
             {
-                balance -= productCost;
-                // Writer Code Goes Here
+                VendingWriter vr = new VendingWriter(); // writing to/formatting log
+                string recordTransaction = (inventory[userSelection][0].Name + " "); 
+                recordTransaction += userSelection + "  $" + balance + " "; 
+
+                balance -= productCost; // Actual work of buying product
                 inventory[userSelection].RemoveAt(0);
+
+                recordTransaction += "$" + balance; // more writing to the log
+                vr.WritingAFile(recordTransaction);
             }
 
 

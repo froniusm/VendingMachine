@@ -47,7 +47,7 @@ namespace Capstone.Classes
                     }
                     else
                     {
-                        Console.WriteLine("Sorry, that's an invalid amount");
+                        Console.WriteLine("Sorry, that's an invalid amount.");
                     }
                 }
                 else if (userInput == "2")
