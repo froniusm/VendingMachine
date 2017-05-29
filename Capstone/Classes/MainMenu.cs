@@ -29,7 +29,9 @@ namespace Capstone.Classes
                 string input = Console.ReadLine();
                 if (input == "1")
                 {
-                    foreach (KeyValuePair<string, List<VendingItem>> kvp in inventory)
+                    Console.WriteLine("Slot ID".PadRight(11) + "Product".PadRight(21) + "Price".PadRight(11) + "Quantity".PadRight(10));
+                    Console.WriteLine();
+                    foreach (KeyValuePair<string, List<VendingItem>> kvp in inventory) // Loop through items in inventory
                     {
                         if (kvp.Value.Count == 0)
                         {
@@ -64,7 +66,12 @@ namespace Capstone.Classes
                                 cost = temp.Cost;
                                 name = temp.Name;
                             }
-                            Console.WriteLine("Product selection: ".PadRight(20) + kvp.Key.PadRight(5) + " " + name.PadRight(20) + " " + cost);
+                            string slotId = kvp.Key.PadRight(10) + " ";
+                            string item = name.PadRight(20) + " ";
+                            string price = cost.ToString().PadRight(10) + " ";
+                            string quantity = kvp.Value.Count.ToString();
+
+                            Console.WriteLine(slotId + item + price + quantity); // Displays vending items with quantity remaining
                         }
                     }
                 }

@@ -31,13 +31,13 @@ namespace Capstone.Classes
                 Console.WriteLine("(2) Select Product");
                 Console.WriteLine("(3) Finish Transaction");
                 Console.WriteLine("(Q) Back To Main Menu");
-                Console.WriteLine("Current Money Provided: " + vm2.Balance);
+                Console.WriteLine("Current Money Provided: $" + vm2.Balance);
 
                 string userInput = Console.ReadLine();
 
                 if (userInput == "1")
                 {
-                    Console.WriteLine("Please enter $1, $2, $5, or $10: ");
+                    Console.WriteLine("Please enter $1, $2, $5, or $10: "); //How to handle if entered with $?
                     decimal cash = Decimal.Parse(Console.ReadLine());
                     if (cash == 1.00M || cash == 2.00M || cash == 5.00M || cash == 10.00M)
                     {
@@ -77,17 +77,17 @@ namespace Capstone.Classes
                         {
                             vm2.BuyItem(input);
                             Console.WriteLine("Dispensing...");
-                            Console.WriteLine("Current Balance: " + vm2.Balance);
+                            Console.WriteLine("Current Balance: $" + vm2.Balance);
                         }
                     }
 
                 }
                 else if (userInput == "3")
                 {
-                    Console.WriteLine("Current Balance: " + vm2.Balance);
+                    Console.WriteLine("Current Balance: $" + vm2.Balance);
                     Console.WriteLine("Your change is " + vm2.ReturnChange());
-                    // Console.WriteLine("Item is being consumed: " + vm2.MakeEatNoises); // Need to add more code to VendingMachine first
-                    // before writing the items consumed
+                    // Console.WriteLine("Consuming item(s): " + MakeEatNoise()); // Need to make this work
+                    
                 }
                 else if (userInput == "Q" || userInput == "q")
                 {
