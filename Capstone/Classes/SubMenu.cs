@@ -9,12 +9,9 @@ namespace Capstone.Classes
 {
     public class SubMenu
     {
-
         private VendingMachine vm2;
-        public VendingMachine Vm2
-        {
-            get { return vm2; }
-        }
+
+        private List<VendingItem> boughtItems = new List<VendingItem>();
 
         public SubMenu(VendingMachine fromMainMenu)
         {
@@ -30,7 +27,6 @@ namespace Capstone.Classes
                 Console.WriteLine("(1) Feed Money");
                 Console.WriteLine("(2) Select Product");
                 Console.WriteLine("(3) Finish Transaction");
-                Console.WriteLine("(Q) Back To Main Menu");
                 Console.WriteLine("Current Money Provided: $" + vm2.Balance);
 
                 string userInput = Console.ReadLine();
@@ -38,7 +34,7 @@ namespace Capstone.Classes
                 if (userInput == "1")
                 {
                     Console.WriteLine("Please enter $1, $2, $5, or $10: "); //How to handle if entered with $?
-                    decimal cash = Decimal.Parse(Console.ReadLine());
+                    Decimal.TryParse(Console.ReadLine(), out decimal cash);
                     if (cash == 1.00M || cash == 2.00M || cash == 5.00M || cash == 10.00M)
                     {
                         Console.WriteLine("Money Provided: $" + cash);
@@ -75,7 +71,7 @@ namespace Capstone.Classes
                         }
                         else if (vm2.Inventory.ContainsKey(input))
                         {
-                            vm2.BuyItem(input);
+                            boughtItems.Add(vm2.BuyItem(input));
                             Console.WriteLine("Dispensing...");
                             Console.WriteLine("Current Balance: $" + vm2.Balance);
                         }
@@ -86,12 +82,11 @@ namespace Capstone.Classes
                 {
                     Console.WriteLine("Current Balance: $" + vm2.Balance);
                     Console.WriteLine("Your change is " + vm2.ReturnChange());
-                    // Console.WriteLine("Consuming item(s): " + MakeEatNoise()); // Need to make this work
-                    
-                }
-                else if (userInput == "Q" || userInput == "q")
-                {
-                    break;
+                    foreach (VendingItem item in boughtItems)
+                    {
+                        Console.WriteLine("Consuming item(s): " + item.MakeEatNoise());
+                    }
+                    boughtItems.Clear();
                 }
             }
         }

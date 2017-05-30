@@ -14,12 +14,11 @@ namespace Capstone.Classes
         {
             PrintHeader();
 
+            VendingMachine vm = new VendingMachine();
+            Dictionary<string, List<VendingItem>> inventory = vm.Inventory; // Reference type variable
+
             while (true)
             {
-                VendingMachine vm = new VendingMachine();
-                Dictionary<string, List<VendingItem>> inventory = vm.Inventory; // Reference type variable
-                
-
                 Console.WriteLine();
                 Console.WriteLine("(1) Display Vending Machine Items");
                 Console.WriteLine("(2) Purchase");
@@ -69,7 +68,7 @@ namespace Capstone.Classes
                             string slotId = kvp.Key.PadRight(10) + " ";
                             string item = name.PadRight(20) + " ";
                             string price = cost.ToString().PadRight(10) + " ";
-                            string quantity = kvp.Value.Count.ToString();
+                            int quantity = kvp.Value.Count;
 
                             Console.WriteLine(slotId + item + price + quantity); // Displays vending items with quantity remaining
                         }

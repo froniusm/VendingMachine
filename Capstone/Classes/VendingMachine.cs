@@ -69,7 +69,7 @@ namespace Capstone.Classes
             return true;
 
         }
-        public void BuyItem(string userSelection)  // buys the item, reducing balance by the item's cost and 
+        public VendingItem BuyItem(string userSelection)  // buys the item, reducing balance by the item's cost and 
         {                                      // reducing the relevant inventory item by one.  
             VendingItem product = inventory[userSelection][0];
             decimal productCost = product.Cost;
@@ -78,16 +78,19 @@ namespace Capstone.Classes
             {
                 VendingWriter vr = new VendingWriter(); // writing to/formatting log
                 string recordTransaction = (inventory[userSelection][0].Name + " "); 
-                recordTransaction += userSelection + "  $" + balance + " "; 
-
-                balance -= productCost; // Actual work of buying product
-                inventory[userSelection].RemoveAt(0);
-
+                recordTransaction += userSelection + "  $" + balance + " ";
+                balance -= productCost;  
                 recordTransaction += "$" + balance; // more writing to the log
                 vr.WritingAFile(recordTransaction);
+
+                
+                inventory[userSelection].RemoveAt(0);
+                return product;
+
+                
             }
 
-
+            return null;
         }
 
 
