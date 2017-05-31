@@ -56,8 +56,8 @@ namespace CapstoneTests
                 buyAllTheCrisps.BuyItem(a1);
             }
 
-            Assert.AreEqual(true, wantsToBuyOneCrisp.isInStock(a1));
-            Assert.AreEqual(false, buyAllTheCrisps.isInStock(a1));
+            Assert.AreEqual(true, wantsToBuyOneCrisp.IsInStock(a1));
+            Assert.AreEqual(false, buyAllTheCrisps.IsInStock(a1));
         }
 
         [TestMethod]

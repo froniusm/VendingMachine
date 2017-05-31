@@ -9,13 +9,13 @@ namespace Capstone.Classes
 {
     public class SubMenu
     {
-        private VendingMachine vm2;
+        private VendingMachine vm;
 
         private List<VendingItem> boughtItems = new List<VendingItem>();
 
         public SubMenu(VendingMachine fromMainMenu)
         {
-            vm2 = fromMainMenu;  // reference type variables are a thing
+            vm = fromMainMenu;  // reference type variables are a thing
         }
 
         public void Display()
@@ -27,7 +27,7 @@ namespace Capstone.Classes
                 Console.WriteLine("(1) Feed Money");
                 Console.WriteLine("(2) Select Product");
                 Console.WriteLine("(3) Finish Transaction");
-                Console.WriteLine("Current Money Provided: $" + vm2.Balance);
+                Console.WriteLine("Current Money Provided: $" + vm.Balance);
 
                 string userInput = Console.ReadLine();
 
@@ -38,8 +38,8 @@ namespace Capstone.Classes
                     if (cash == 1.00M || cash == 2.00M || cash == 5.00M || cash == 10.00M)
                     {
                         Console.WriteLine("Money Provided: $" + cash);
-                        vm2.AddMoney(cash);
-                        Console.WriteLine("Your new balance is: $" + vm2.Balance);
+                        vm.AddMoney(cash);
+                        Console.WriteLine("Your new balance is: $" + vm.Balance);
                     }
                     else
                     {
@@ -51,42 +51,46 @@ namespace Capstone.Classes
                     Console.WriteLine("Please enter your selection: ");
                     string input = (Console.ReadLine()).ToUpper();
 
-                    if (!vm2.Inventory.ContainsKey(input))
+                    if (!vm.IsValidSlot(input))
                     {
                         Console.WriteLine("Invalid product code. Please try again.");
                     }
-                    else if (!vm2.isInStock(input))
+                    else if (!vm.IsInStock(input))
                     {
                         Console.WriteLine("Sorry, item is sold out");
                     }
 
                     else
                     {
-                        List<VendingItem> userDesiredProduct = (vm2.Inventory)[input];
-                        decimal cost = userDesiredProduct[0].Cost;
+                        VendingItem userDesiredProduct = vm.GetItemAtSlot(input);
+                        decimal cost = userDesiredProduct.Cost;
 
-                        if (vm2.Balance < cost)
+                        if (vm.Balance < cost)
                         {
                             Console.WriteLine("Please provide more cash");
                         }
-                        else if (vm2.Inventory.ContainsKey(input))
+                        else
                         {
-                            boughtItems.Add(vm2.BuyItem(input));
+                            boughtItems.Add(vm.BuyItem(input));
                             Console.WriteLine("Dispensing...");
-                            Console.WriteLine("Current Balance: $" + vm2.Balance);
+                            Console.WriteLine("Current Balance: $" + vm.Balance);
                         }
                     }
 
                 }
                 else if (userInput == "3")
                 {
-                    Console.WriteLine("Current Balance: $" + vm2.Balance);
-                    Console.WriteLine("Your change is " + vm2.ReturnChange());
+                    Console.WriteLine("Current Balance: $" + vm.Balance);
+                    Console.WriteLine("Your change is " + vm.ReturnChange());
                     foreach (VendingItem item in boughtItems)
                     {
                         Console.WriteLine("Consuming item(s): " + item.MakeEatNoise());
                     }
                     boughtItems.Clear();
+                }
+                else
+                {
+                    Console.WriteLine("Please try again.");
                 }
             }
         }

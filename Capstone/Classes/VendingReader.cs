@@ -10,6 +10,9 @@ namespace Capstone.Classes
     public class VendingReader
     {
         static char[] delimiters = new char[] { '|' }; // list of delimiters
+        const int SlotID = 0;
+        const int ProductName = 1;
+        const int Cost = 2;
 
         public Dictionary<string, List<VendingItem>> StockNewVendingMachine(string filePath)
         {
@@ -32,9 +35,9 @@ namespace Capstone.Classes
                             throw new Exception("A vending item is not formatted correctly: " + line);
                         }
                         // This assumes all input files will be coming in with the format(Location|Product_Name|Price)
-                        string productLocation = vendItemProperties[0];
-                        string productName = vendItemProperties[1];
-                        bool validCost = decimal.TryParse(vendItemProperties[2], out decimal productCost);
+                        string productLocation = vendItemProperties[SlotID];
+                        string productName = vendItemProperties[ProductName];
+                        bool validCost = decimal.TryParse(vendItemProperties[Cost], out decimal productCost);
                         if (!validCost)
                         {
                             throw new Exception("The file had an invalid cost: " + line);

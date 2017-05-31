@@ -12,12 +12,9 @@ namespace Capstone.Classes
         public string Name { get { return name; } }
 
         private decimal cost;
-        public decimal Cost { get {return cost; } } 
+        public decimal Cost { get {return cost; } }
 
-        public virtual string MakeEatNoise()
-        {
-            return "Food Noises Food Noises, Yum! (You should probably replace this) ";
-        }
+        public abstract string MakeEatNoise();
         
         public VendingItem(decimal cost, string productName)
         {

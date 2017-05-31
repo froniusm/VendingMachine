@@ -15,7 +15,6 @@ namespace Capstone.Classes
             PrintHeader();
 
             VendingMachine vm = new VendingMachine();
-            Dictionary<string, List<VendingItem>> inventory = vm.Inventory; // Reference type variable
 
             while (true)
             {
@@ -30,47 +29,19 @@ namespace Capstone.Classes
                 {
                     Console.WriteLine("Slot ID".PadRight(11) + "Product".PadRight(21) + "Price".PadRight(11) + "Quantity".PadRight(10));
                     Console.WriteLine();
-                    foreach (KeyValuePair<string, List<VendingItem>> kvp in inventory) // Loop through items in inventory
+                    foreach (string slot in vm.Slots) // Loop through items in inventory
                     {
-                        if (kvp.Value.Count == 0)
+                        VendingItem product = vm.GetItemAtSlot(slot);
+                        if (product == null)
                         {
                             Console.WriteLine("Sold out!");
                         }
                         else
                         {
-                            VendingItem product = kvp.Value[0];
-                            decimal cost = 10000000;
-                            string name = "";
-                            if (product is Chip)
-                            {
-                                Chip temp = (Chip)product;
-                                cost = temp.Cost;
-                                name = temp.Name;
-                            }
-                            else if (product is Candy)
-                            {
-                                Candy temp = (Candy)product;
-                                cost = temp.Cost;
-                                name = temp.Name;
-                            }
-                            else if (product is Drink)
-                            {
-                                Drink temp = (Drink)product;
-                                cost = temp.Cost;
-                                name = temp.Name;
-                            }
-                            else // (Product is Gum)
-                            {
-                                Gum temp = (Gum)product;
-                                cost = temp.Cost;
-                                name = temp.Name;
-                            }
-                            string slotId = kvp.Key.PadRight(10) + " ";
-                            string item = name.PadRight(20) + " ";
-                            string price = cost.ToString().PadRight(10) + " ";
-                            int quantity = kvp.Value.Count;
+                            string item = product.Name.PadRight(20) + " ";
+                            string price = product.Cost.ToString().PadRight(10) + " ";
 
-                            Console.WriteLine(slotId + item + price + quantity); // Displays vending items with quantity remaining
+                            Console.WriteLine(slot.PadRight(10) + " " + item + price + "in stock"); // Displays vending items with quantity remaining
                         }
                     }
                 }
@@ -79,9 +50,10 @@ namespace Capstone.Classes
                     SubMenu submenu = new SubMenu(vm);
                     submenu.Display();
                 }
-
                 else if (input == "Q" || input == "q")
+                {
                     return;
+                }
                 else
                 {
                     Console.WriteLine("Please try again.");
